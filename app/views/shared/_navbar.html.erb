@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg bg-dark sticky-top" data-bs-theme="dark">
+  <div class="container">
+    <%= link_to "Crazy 4 Cats", root_path, class:"navbar-brand" %>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ms-auto">
+        <%= link_to "Posts", root_path, class:"nav-link" %>      
+      </div>
+      <div class="dropdown">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <% if !user_signed_in? %>
+            Ingresar
+          <% elsif %>
+            ¡Hola <%= current_user.email %>!
+          <% end %>
+        </a>
+        
+          <ul class="dropdown-menu">
+        <% if !user_signed_in? %>
+            <li><%= link_to "Ingresar", new_user_session_path, class:"dropdown-item" %></li>
+          <% elsif %>
+            <li><%= button_to "Cerrar Sesión", destroy_user_session_path, method: :delete, class:"dropdown-item", form: {data: {turbo_confirm: "¿Estás seguro de que deseas cerrar sesión?"}} %></li>
+        <% end %>
+          </ul>  
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,31 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @post %>
+
+<div>
+  <%= render "reactions/counters"%>
+</div>
+<div>
+  <%= render "reactions/options"%>
+</div>
+<div>
+  <ol class="list-group list-group-numbered">
+    <% @post.comments.each do |comment| %>
+    
+      <% if comment.anonymous %>
+        <li>Anonymous: <%= comment.content %></li>
+      <% else %>
+        <li><%= comment.user.email %>: <%= comment.content %></li>
+      <% end %>
+    
+    <% end %>
+  </ol>
+</div>
+
+
+<div>
+  <%= link_to "Edit this post", edit_post_path(@post) %> |
+  <%= link_to "Back to posts", posts_path %>
+
+  <%= button_to "Destroy this post", @post, method: :delete %>
+</div>

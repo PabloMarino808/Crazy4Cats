@@ -1,0 +1,10 @@
+<div class="container">
+    <ul>
+        <% Reaction.kinds.each do |kind| %>
+            <li>
+                <%= button_to "#{kind}", user_reaction_path(post_id: @post.id, kind: kind), method: :post %>
+            </li>
+        <% end %>
+        
+    </ul>
+</div>
